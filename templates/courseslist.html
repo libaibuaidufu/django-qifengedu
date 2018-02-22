@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<!--web main body start-->
+<div class="w-all w-minw bg-c-fcfcfc ovhidden">
+    <div class="w-main m-auto">
+        <!--面包屑 start-->
+        <div class="w-main fs-14 ftc-7a7a7a line-h45 m-t-18 m-b-18 fl"> 网站位置：首页 > 小学</div>
+        <!--filter start-->
+        <div class="w-1150 p-l-25 p-r-25 bg-c-ffffff fl">
+            <div class="w-1150 fl">
+                <h3 class="fs-14 ftc-000000 line-h60 fl">全部课程</h3>
+            </div>
+
+            <!--分割线-->
+            <div class="w-all fl hg-1 bg-c-d2d2d2"></div>
+            <!--分割线-->
+            <div class="w-1150 ql_ftclass">
+                <div class="w-all p-t-10 p-b-10 ovhidden">
+                    <div class="w-80 fs-14 line-h28 m-t-6 m-b-6 ftc-888888 fl">课程分类</div>
+                    <ul class="w-970 fl">
+                        <li class="w-70 m-l-24 fl"><a href="?edu=0"
+                                                      class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if edu_id == 0 %}class_cur{% endif %}">
+                            全部</a>
+                        </li>
+                        <li class="w-70 m-l-24 fl"><a href="?edu=1"
+                                                      class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if 1 == edu_id %}class_cur{% endif %}">
+                            小学</a>
+                        </li>
+                        <li class="w-70 m-l-24 fl"><a href="?edu=2"
+                                                      class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% ifequal 2 edu_id %}class_cur{% endifequal %}">
+                            初中</a>
+                        </li>
+                        <li class="w-70 m-l-24 fl"><a href="?edu=3"
+                                                      class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% ifequal 3 edu_id %}class_cur{% endifequal %}">
+                            高中</a>
+                        </li>
+                        <li class="w-70 m-l-24 fl"><a href="?edu=4"
+                                                      class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% ifequal 4 edu_id %}class_cur{% endifequal %}">
+                            大学</a>
+                        </li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+
+                <!--分割线-->
+                <div class="w-all fl hg-1 bg-c-d2d2d2"></div>
+                <!--分割线-->
+                <div class="w-all p-t-16 p-b-16 ovhidden">
+                    <div class="w-80 fs-14 line-h28 m-t-6 m-b-6 ftc-888888 fl">所在年级</div>
+                    <ul class="w-970 fl">
+                        <li class="w-70 m-l-24 fl"><a href="?edu={{ edu_id }}&grade={{ grade.id }}"
+                                                      class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if grade_id == 0 %}class_cur{% endif %}">不限</a>
+                        </li>
+                        {% for grade in all_grade %}
+                            <li class="w-70 m-l-24 fl"><a href="?edu={{ edu_id }}&grade={{ grade.id }}"
+                                                          class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if grade.id == grade_id %}class_cur{% endif %}">{{ grade.name }}</a>
+                            </li>
+                        {% endfor %}
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+
+                <!--分割线-->
+                <div class="w-all fl hg-1 bg-c-d2d2d2"></div>
+                <!--分割线-->
+                <div class="w-all p-t-16 p-b-16 ovhidden">
+                    <div class="w-80 fs-14 line-h28 m-t-6 m-b-6 ftc-888888 fl">学习科目</div>
+                    <ul class="w-970 fl">
+                        <li class="w-70 m-l-24 fl"><a href="#"
+                                                      class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if lesson_id == 0 %}class_cur{% endif %}">不限</a>
+                        </li>
+                        {% for lesson in all_lesson %}
+                            <li class="w-70 m-l-24 fl"><a
+                                    href="?edu={{ edu_id }}&grade={{ grade_id }}&lesson={{ lesson.id }}"
+                                    class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if lesson.id == lesson_id %}class_cur{% endif %}">{{ lesson.name }}</a>
+                            </li>
+                        {% endfor %}
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+
+                <!--分割线-->
+                <div class="w-all fl hg-1 bg-c-d2d2d2"></div>
+                <!--分割线-->
+                <div class="w-all p-t-16 p-b-16 ovhidden">
+                    <div class="w-80 fs-14 line-h28 m-t-6 m-b-6 ftc-888888 fl">上课时间</div>
+                    <ul class="w-970 fl">
+                        <li class="w-70 m-l-24 fl"><a href="#"
+                                                      class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if is_fun == '' %}class_cur{% endif %}">不限</a>
+                        </li>
+                        <li class="w-70 m-l-24 fl"><a
+                                href="?edu={{ edu_id }}&grade={{ grade_id }}&lesson={{ lesson_id }}&is_fun=True"
+                                class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if is_fun == 'True' %}class_cur{% endif %}">周末</a>
+                        </li>
+                        <li class="w-70 m-l-24 fl"><a
+                                href="?edu={{ edu_id }}&grade={{ grade_id }}&lesson={{ lesson_id }}&is_fun=False"
+                                class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if is_fun == 'False' %}class_cur{% endif %}">非周末</a>
+                        </li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+
+                <!--分割线-->
+                <div class="w-all fl hg-1 bg-c-d2d2d2"></div>
+                <!--分割线-->
+                <div class="w-all p-t-16 p-b-16 ovhidden">
+                    <div class="w-80 fs-14 line-h28 m-t-6 m-b-6 ftc-888888 fl">授课方式</div>
+                    <ul class="w-970 fl">
+                        <li class="w-70 m-l-24 fl"><a
+                                href="?edu={{ edu_id }}&grade={{ grade_id }}&lesson={{ lesson_id }}&is_fun={{ is_fun }}&city={{ city_id }}"
+                                class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if teach_way == '' %}class_cur{% endif %}">不限</a>
+                        </li>
+                        <li class="w-70 m-l-24 fl"><a
+                                href="?edu={{ edu_id }}&grade={{ grade_id }}&lesson={{ lesson_id }}&is_fun={{ is_fun }}&city={{ city_id }}&teach_way='one to one'"
+                                class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% ifequal teach_way 'one to one' %}class_cur{% endifequal %}">一对一</a>
+                        </li>
+                        <li class="w-70 m-l-24 fl"><a
+                                href="?edu={{ edu_id }}&grade={{ grade_id }}&lesson={{ lesson_id }}&is_fun={{ is_fun }}&city={{ city_id }}&teach_way='one to two'"
+                                class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if teach_way == 'one to two' %}class_cur{% endif %}">一对二</a>
+                        </li>
+                        <li class="w-70 m-l-24 fl"><a
+                                href="?edu={{ edu_id }}&grade={{ grade_id }}&lesson={{ lesson_id }}&is_fun={{ is_fun }}&city={{ city_id }}&teach_way='one to three'"
+                                class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if teach_way == 'one to three' %}class_cur{% endif %}">一对三</a>
+                        </li>
+                        <li class="w-70 m-l-24 fl"><a
+                                href="?edu={{ edu_id }}&grade={{ grade_id }}&lesson={{ lesson_id }}&is_fun={{ is_fun }}&city={{ city_id }}&teach_way='small people'"
+                                class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if teach_way == 'small people' %}class_cur{% endif %}">小班课</a>
+                        </li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+
+                <!--分割线-->
+                <div class="w-all fl hg-1 bg-c-d2d2d2"></div>
+                <!--分割线-->
+                <div class="w-all p-t-16 p-b-16 ovhidden">
+                    <div class="w-80 fl">
+                        <dt class="w-80 fs-14 line-h28 m-t-6 m-b-6 ftc-888888 fl">上课地点</dt>
+                    </div>
+                    <ul class="w-970 fl">
+                        <li class="w-70 m-l-24 fl"><a
+                                href="?edu={{ edu_id }}&grade={{ grade_id }}&lesson={{ lesson_id }}"
+                                class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if city_id == 0 %}class_cur{% endif %}">不限</a>
+                        </li>
+                        {% for city in all_city %}
+                            <li class="w-70 m-l-24 fl"><a
+                                    href="?edu={{ edu_id }}&grade={{ grade_id }}&lesson={{ lesson_id }}&city={{ city.id }}&is_fun={{ is_fun }}"
+                                    class="dsblock w-all fs-14 line-h28 ftc-888888 m-t-6 m-b-6 curpter text-c fl {% if city.id == city_id %}class_cur{% endif %}">{{ city.name }}</a>
+                            </li>
+                        {% endfor %}
+
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--filter end-->
+
+        <!--排序 start-->
+        <div class="w-1170 bg-c-ffffff p-t-10 p-b-10 p-r-15 p-l-15 fl m-t-30">
+            <dl class="ql_sort">
+                <dd class="w-60 p-l-10 curpter fs-14 ftc-000000 line-h24 m-l-12 fl">综合排序</dd>
+                <dd class="w-60 p-l-10 curpter fs-14 ftc-000000 line-h24 m-l-12 fl">人气</dd>
+                <dd class="w-60 p-l-10 curpter fs-14 ftc-000000 line-h24 m-l-12 fl cur">时间</dd>
+                <dd class="w-60 p-l-10 curpter fs-14 ftc-000000 line-h24 m-l-12 fl">价格</dd>
+                <div class="clear"></div>
+            </dl>
+        </div>
+        <div class="w-main m-auto m-t-25 fl">
+            <ul class="home_calss w-1224 ovhidden">
+                {% for courses in all_courses.object_list %}
+                    <li class="w-280 m-l-13 m-r-13 bg-c-ffffff m-t-8 m-b-33 fl"><a href="课程详情.html"
+                                                                                   class="dsblock w-280 hg-200 ovhidden ps-r">
+                        <img src="pics/12.jpg" alt=""/> </a>
+                        <div class="w-255 p-l-10 p-r-15 p-b-10 fl">
+                            <div class="home_calsstxt w-155 fl">
+                                <h3 class="w-all fs-16 ftc-000000 line-h32  one_hidden  m-t-6 fl">
+                                    {{ courses.name }}</h3>
+                                <span class="dsblock w-all fs-20 ftc-ff0000 line-h32 fl">￥：{{ courses.py_price }}</span>
+                            </div>
+                            <a href="课程详情.html"
+                               class="dsblock ql_icon hg-34 line-h34 fs-14 ftc-ffffff m-t-22 ql_h_btnfr w-86 text-c fr">马上购买</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="w-amin hg-30"></div>
+            <!--pages start-->
+            <ul class="w-560 hg-36 ql_pages m-auto">
+                {#                <li class="fl"><a class="cur" href="#">1</a></li>#}
+                {% if all_courses.has_previous %}
+                    <li class="fl"><a href="?{{ all_courses.previous_page_number.querystring }}">上一页</a></li>
+                {% endif %}
+                {% for page in all_courses.pages %}
+                    {% if page %}
+                        {% ifequal page all_courses.number %}
+                            <li class="fl"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                        {% else %}
+                            <li><a href="?{{ page.querystring }}" class="cur">{{ page }}</a></li>
+                        {% endifequal %}
+                    {% else %}
+                        <li class="fl"><a href="">...</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if all_courses.has_next %}
+                    <li class="fl"><a  href="?{{ all_courses.next_page_number.querystring }}">下一页</a></li>
+                {% endif %}
+            </ul>
+            <!--pages end-->
+            <div class="w-amin hg-30"></div>
+        </div>
+        <!--精选课程 end-->
+    </div>
+</div>
+<!--web main body start-->
+<!--like start-->
+<div class="w-all w-minw bg-c-f6f6f6 ovhidden">
+    <div class="w-main m-auto">
+        <!--title start-->
+        <div class="w-main ovhidden p-t-10 fl">
+            <h3 class="fl fs-20 ft-w-b line-h40"><span class="dsblock ql_icon ql_like tx-ind m-r-15 fl">猜你喜欢</span>猜你喜欢
+            </h3>
+        </div>
+        <!--title end-->
+        <ul class="ql_likeclass w-1210 ovhidden">
+            <li class="w-230 bg-c-ffffff m-t-10 m-r-6 m-l-6 m-b-10 fl"><a href="课程详情.html"
+                                                                          class="dsblock w-230 hg-165 ovhidden ps-r">
+                <img src="pics/12.jpg" alt=""/> </a> <a href="课程详情.html" class="w-210 p-l-10 p-r-10 fl">
+                <h3 class="w-all fs-16 ftc-000000 line-h32  one_hidden  m-t-6 fl">初中全科1V1定制初中全科1V1定制</h3>
+                <span class="dsblock w-all fs-20 ftc-ff0000 line-h32 fl">￥：300</span> </a></li>
+            <li class="w-230 bg-c-ffffff m-t-10 m-r-6 m-l-6 m-b-10 fl"><a href="课程详情.html"
+                                                                          class="dsblock w-230 hg-165 ovhidden ps-r">
+                <img src="pics/12.jpg" alt=""/> </a> <a href="课程详情.html" class="w-210 p-l-10 p-r-10 fl">
+                <h3 class="w-all fs-16 ftc-000000 line-h32  one_hidden  m-t-6 fl">初中全科1V1定制初中全科1V1定制</h3>
+                <span class="dsblock w-all fs-20 ftc-ff0000 line-h32 fl">￥：300</span> </a></li>
+            <li class="w-230 bg-c-ffffff m-t-10 m-r-6 m-l-6 m-b-10 fl"><a href="课程详情.html"
+                                                                          class="dsblock w-230 hg-165 ovhidden ps-r">
+                <img src="pics/12.jpg" alt=""/> </a> <a href="课程详情.html" class="w-210 p-l-10 p-r-10 fl">
+                <h3 class="w-all fs-16 ftc-000000 line-h32  one_hidden  m-t-6 fl">初中全科1V1定制初中全科1V1定制</h3>
+                <span class="dsblock w-all fs-20 ftc-ff0000 line-h32 fl">￥：300</span> </a></li>
+            <li class="w-230 bg-c-ffffff m-t-10 m-r-6 m-l-6 m-b-10 fl"><a href="课程详情.html"
+                                                                          class="dsblock w-230 hg-165 ovhidden ps-r">
+                <img src="pics/12.jpg" alt=""/> </a> <a href="课程详情.html" class="w-210 p-l-10 p-r-10 fl">
+                <h3 class="w-all fs-16 ftc-000000 line-h32  one_hidden  m-t-6 fl">初中全科1V1定制初中全科1V1定制</h3>
+                <span class="dsblock w-all fs-20 ftc-ff0000 line-h32 fl">￥：300</span> </a></li>
+            <li class="w-230 bg-c-ffffff m-t-10 m-r-6 m-l-6 m-b-10 fl"><a href="课程详情.html"
+                                                                          class="dsblock w-230 hg-165 ovhidden ps-r">
+                <img src="pics/12.jpg" alt=""/> </a> <a href="课程详情.html" class="w-210 p-l-10 p-r-10 fl">
+                <h3 class="w-all fs-16 ftc-000000 line-h32  one_hidden  m-t-6 fl">初中全科1V1定制初中全科1V1定制</h3>
+                <span class="dsblock w-all fs-20 ftc-ff0000 line-h32 fl">￥：300</span> </a></li>
+        </ul>
+        <div class="w-amin hg-30 ovhidden"></div>
+    </div>
+</div>
+<!--like end-->
+{% endblock %}
